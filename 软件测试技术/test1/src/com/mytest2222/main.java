@@ -2,23 +2,42 @@ package com.mytest2222;
 
 
 import java.util.Calendar;
+import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) {
 
+        System.out.println("请依次输入姓名、身份证号、单位性质、职务、是否劳模、是否有提前退休文件、医院等级、医疗费用、第几次去");
+        Scanner scanner=new Scanner(System.in);
 
+        boolean laomo=false;
+        boolean early=false;
+        String name=scanner.next();
+        String id=scanner.next();
+        String nature=scanner.next();
+        String position=scanner.next();
+        String laomo1=scanner.next();
+        String early1=scanner.next();
+        String hospital=scanner.next();
+        double price=scanner.nextDouble();
+        int time=scanner.nextInt();
+        if(laomo1.equals("true")){
+            laomo=true;
+        }
+        if(early1.equals("true")){
+            early=true;
+        }
 
         //People people1=new People("张三","34220119510218061X","机关事业","副处长","退休",false);
-        People people1=new People("张三","34220119550218062X","机关事业","普通职工",false,false);
+        //People people1=new People("张三","34220119550218062X","机关事业","普通职工",false,false);
+        People people1=new People(name,id,nature,position,laomo,early);
         //注：positon的判断依据为 是否为普通职工
-
         People entirePeople=entirePeople(people1);//根据身份证完善people信息
-        System.out.println(entirePeople);
+        //double[] a=function(entirePeople,"一级医院",60000,1);//a[0]为可报销多少钱，a[1]为应付多少钱
 
-        double[] a=function(entirePeople,"一级医院",60000,1);//a[0]为可报销多少钱，a[1]为应付多少钱
 
+        double[] a=function(entirePeople,hospital,price,time);//a[0]为可报销多少钱，a[1]为应付多少钱
         System.out.println("可报销"+a[0]+"元，"+"应付"+a[1]+"元。");
-
     }
 
     public static People entirePeople(People people){//完善整体people信息
@@ -100,10 +119,10 @@ public class main {
                             if(price<=55000+800){
                                 result=(price-800)*0.85;
                             }
-                            if(price<150000+800&&price>55000+800) {
+                            else if(price<150000+800&&price>55000+800) {
                                 result=55000*0.85+(price-800-55000)*0.80;
                             }
-                            if(price>=150000+800) {
+                            else {
                                 result=55000*0.85+(150000-55000)*0.80;
                             }
                     }else {//不在职
@@ -117,10 +136,10 @@ public class main {
                             if(price<=55000+800){
                                 result=(price-800)*0.90;
                             }
-                            if(price<150000+800&&price>55000+800) {
+                            else if(price<150000+800&&price>55000+800) {
                                 result=55000*0.90+(price-800-55000)*0.80;
                             }
-                            if(price>=150000+800) {
+                            else{
                                 result=55000*0.90+(150000-55000)*0.80;
                             }
 
@@ -135,10 +154,10 @@ public class main {
                         if(price<=55000+270){
                             result=(price-270)*0.85;
                         }
-                        if(price<150000+270&&price>55000+270) {
+                        else if(price<150000+270&&price>55000+270) {
                             result=55000*0.85+(price-270-55000)*0.80;
                         }
-                        if(price>=150000+270) {
+                        else{
                             result=55000*0.85+(150000-55000)*0.80;
                         }
                     }else {//不在职
@@ -152,10 +171,10 @@ public class main {
                             if(price<=55000+270){
                                 result=(price-270)*0.90;
                             }
-                            if(price<150000+270&&price>55000+270) {
+                            else if(price<150000+270&&price>55000+270) {
                                 result=55000*0.90+(price-270-55000)*0.80;
                             }
-                            if(price>=150000+270) {
+                            else{
                                 result=55000*0.90+(150000-55000)*0.80;
                             }
                         }
@@ -164,8 +183,7 @@ public class main {
             }
         }
 
-
-        if(hospital.equals("二级医院")){
+        else if(hospital.equals("二级医院")){
             if(time==1){//第一次
                 if(price<=1100){
                     result=0;
@@ -174,10 +192,10 @@ public class main {
                         if(price<=55000+1100){
                             result=(price-1100)*0.85;
                         }
-                        if(price<150000+1100&&price>55000+1100) {
+                        else if(price<150000+1100&&price>55000+1100) {
                             result=55000*0.85+(price-1100-55000)*0.80;
                         }
-                        if(price>=150000+1100) {
+                        else {
                             result=55000*0.85+(150000-55000)*0.80;
                         }
                     }else {//不在职
@@ -191,10 +209,10 @@ public class main {
                             if(price<=55000+1100){
                                 result=(price-1100)*0.90;
                             }
-                            if(price<150000+1100&&price>55000+1100) {
+                            else if(price<150000+1100&&price>55000+1100) {
                                 result=55000*0.90+(price-1100-55000)*0.80;
                             }
-                            if(price>=150000+1100) {
+                            else{
                                 result=55000*0.90+(150000-55000)*0.80;
                             }
 
@@ -209,10 +227,10 @@ public class main {
                         if(price<=55000+350){
                             result=(price-350)*0.85;
                         }
-                        if(price<150000+350&&price>55000+350) {
+                        else if(price<150000+350&&price>55000+350) {
                             result=55000*0.85+(price-350-55000)*0.80;
                         }
-                        if(price>=150000+350) {
+                        else {
                             result=55000*0.85+(150000-55000)*0.80;
                         }
                     }else {//不在职
@@ -226,10 +244,10 @@ public class main {
                             if(price<=55000+350){
                                 result=(price-350)*0.90;
                             }
-                            if(price<150000+350&&price>55000+350) {
+                            else if(price<150000+350&&price>55000+350) {
                                 result=55000*0.90+(price-350-55000)*0.80;
                             }
-                            if(price>=150000+270) {
+                            else {
                                 result=55000*0.90+(150000-55000)*0.80;
                             }
                         }
@@ -239,7 +257,7 @@ public class main {
         }
 
 
-        if(hospital.equals("三级医院")){
+        else if(hospital.equals("三级医院")){
             if(time==1){//第一次
                 if(price<=1700){
                     result=0;
@@ -248,10 +266,10 @@ public class main {
                         if(price<=55000+1700){
                             result=(price-1700)*0.85;
                         }
-                        if(price<150000+1700&&price>55000+1700) {
+                        else if(price<150000+1700&&price>55000+1700) {
                             result=55000*0.85+(price-1700-55000)*0.80;
                         }
-                        if(price>=150000+1700) {
+                        else{
                             result=55000*0.85+(150000-55000)*0.80;
                         }
                     }else {//不在职
@@ -265,10 +283,10 @@ public class main {
                             if(price<=55000+1700){
                                 result=(price-1700)*0.90;
                             }
-                            if(price<150000+1700&&price>55000+1700) {
+                            else if(price<150000+1700&&price>55000+1700) {
                                 result=55000*0.90+(price-1700-55000)*0.80;
                             }
-                            if(price>=150000+1700) {
+                            else{
                                 result=55000*0.90+(150000-55000)*0.80;
                             }
 
@@ -283,10 +301,10 @@ public class main {
                         if(price<=55000+500){
                             result=(price-500)*0.85;
                         }
-                        if(price<150000+500&&price>55000+500) {
+                        else if(price<150000+500&&price>55000+500) {
                             result=55000*0.85+(price-500-55000)*0.80;
                         }
-                        if(price>=150000+500) {
+                        else {
                             result=55000*0.85+(150000-55000)*0.80;
                         }
                     }else {//不在职
@@ -298,18 +316,22 @@ public class main {
                             }
                         }else {//非老工人或劳模
                             if(price<=55000+500){
+
                                 result=(price-500)*0.90;
                             }
-                            if(price<150000+500&&price>55000+500) {
+                            else if(price<150000+500&&price>55000+500) {
                                 result=55000*0.90+(price-500-55000)*0.80;
                             }
-                            if(price>=150000+500) {
+                            else {
                                 result=55000*0.90+(150000-55000)*0.80;
                             }
                         }
                     }
                 }
             }
+        }
+        else {
+            System.out.println("请输入正确的医院属性");
         }
 
         double[] a=new double[2];
