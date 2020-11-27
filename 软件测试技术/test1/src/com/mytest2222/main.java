@@ -17,24 +17,23 @@ public class main {
         String nature=scanner.next();
         String position=scanner.next();
         String laomo1=scanner.next();
-        String early1=scanner.next();
+      //  String early1=scanner.next();
         String hospital=scanner.next();
         double price=scanner.nextDouble();
         int time=scanner.nextInt();
         if(laomo1.equals("true")){
             laomo=true;
         }
-        if(early1.equals("true")){
-            early=true;
-        }
+
 
         //People people1=new People("张三","34220119510218061X","机关事业","副处长","退休",false);
         //People people1=new People("张三","34220119550218062X","机关事业","普通职工",false,false);
-        People people1=new People(name,id,nature,position,laomo,early);
+        People people1=new People(name,id,nature,position,laomo,false);
+
         //注：positon的判断依据为 是否为普通职工
         People entirePeople=entirePeople(people1);//根据身份证完善people信息
         //double[] a=function(entirePeople,"一级医院",60000,1);//a[0]为可报销多少钱，a[1]为应付多少钱
-
+        System.out.println("计算后的完整用户信息为："+entirePeople);
 
         double[] a=function(entirePeople,hospital,price,time);//a[0]为可报销多少钱，a[1]为应付多少钱
         System.out.println("可报销"+a[0]+"元，"+"应付"+a[1]+"元。");
